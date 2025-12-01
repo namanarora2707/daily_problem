@@ -1,0 +1,28 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class solution{
+    public:
+    bool canJump(vector<int>&nums){
+        int farthest=0;
+        for(int i=0;i<nums.size();i++){
+            if(i>farthest)
+            return false;
+            farthest = max(farthest, i+nums[i]);
+
+        }
+        return true;
+    }
+};  
+int main(){
+    solution s;
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++){
+    cin>>nums[0];
+    }
+    cout<<(s.canJump(nums)?"true":"false")<<endl;
+    return 0;
+}
