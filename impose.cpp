@@ -1,45 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t;
+    int t; 
     cin >> t;
-
-    while (t--) {
+    while(t--){
         string r;
         cin >> r;
-
         int n = r.size();
-        int totalS = 0;
 
-        for (char c : r)
-            if (c == 's')
-                totalS++;
+        int total_u = 0;
+        for(char c: r) if(c=='u') total_u++;
 
-        int answer = n; 
+        int centers = 0;
+        int last = -1000000000;
 
-        for (int d = 1; d < n; d++) {
-            for (int start = 0; start < d; start++) {
-                int needed = 0;
-                int haveS = 0;
-
-                for (int pos = start; pos < n; pos += d) {
-                    needed++;
-                    if (r[pos] == 's')
-                        haveS++;
-                }
-
-                if (haveS >= 2) {
-                    answer = min(answer, needed - haveS);
-                }
+        for(int i = 1; i < n-1; i++){
+            if(r[i]=='u' && i - last >= 2){
+                centers++;
+                last = i;
             }
         }
 
-        cout << answer << "\n";
+        cout << total_u - centers << "\n";
     }
-
-    return 0;
 }
