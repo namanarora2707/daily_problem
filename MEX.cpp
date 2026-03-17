@@ -1,33 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int t;
     cin >> t;
 
-    vector<int> answers;
-
-    while (t--) {
+    while(t--){
         int n;
         cin >> n;
 
-        vector<int> cnt(101, 0);
-        for (int i = 0; i < n; i++) {
-            int x;
-            cin >> x;
-            cnt[x]++;
+        vector<long long> a(n);
+        for(int i=0;i<n;i++) cin >> a[i];
+
+        int ans = 0;
+
+        for(int i=0;i<n;i++){
+            long long x = -a[i]; // try making a[i] → 0
+
+            unordered_set<long long> s;
+
+            for(int j=0;j<n;j++){
+                long long val = a[j] + x;
+                if(val >= 0) s.insert(val);
+            }
+
+            int mex = 0;
+            while(s.count(mex)) mex++;
+
+            ans = max(ans, mex);
         }
 
-        int mex = 0;
-        while (cnt[mex] > 0) mex++;
-
-        answers.push_back(mex);
+        cout << ans << "\n";
     }
-
-    
-    for (int x : answers) {
-        cout << x << "\n";
-    }
-
-    return 0;
 }
