@@ -2,4 +2,4 @@
 # daily_problem
 
 
-gee
+g
